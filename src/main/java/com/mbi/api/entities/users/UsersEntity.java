@@ -11,10 +11,11 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "users")
 @TypeDefs({@TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)})
+@SequenceGenerator(name = "users_id_seq", sequenceName = "users_id_seq", allocationSize = 1)
 public class UsersEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_id_seq")
     private Long id;
     private String name;
     private String email;

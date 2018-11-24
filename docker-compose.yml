@@ -1,12 +1,13 @@
 version: '3'
 services:
-  web:
+  api:
     build: .
+    container_name: users-api
     ports:
      - "8080:8080"
   db:
     image: "postgres:alpine"
-    container_name: db
+    container_name: postgres-db
     environment:
       POSTGRES_USER: mbi
       POSTGRES_PASSWORD: password

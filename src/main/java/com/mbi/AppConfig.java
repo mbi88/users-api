@@ -4,7 +4,7 @@ import java.util.Properties;
 
 class AppConfig {
 
-    private String url = String.format("jdbc:postgresql://%s:5432/%s",
+    private String url = String.format("jdbc:postgresql://%s:5432/%s?createDatabaseIfNotExist=true",
             "db",
             "mbi");
     private String user = "mbi";
