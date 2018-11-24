@@ -1,0 +1,15 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "8080:8080"
+  db:
+    image: "postgres:alpine"
+    container_name: db
+    environment:
+      POSTGRES_USER: mbi
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mbi
+    ports:
+      - "5432:5432"
