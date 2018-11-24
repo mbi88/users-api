@@ -1,7 +1,13 @@
 # Spring learning 
 
-./gradlew clean bootRun
+### Preconditions
 
-http://127.0.0.1:8080/api/swagger
+Install `docker`
 
-see src/main/resources/sql/init_users.sql
+### Run
+
+`docker-compose up --build`
+
+### API docs
+
+`http://127.0.0.1:8080/api/swagger`
