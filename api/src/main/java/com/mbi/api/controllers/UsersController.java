@@ -12,8 +12,7 @@ import javax.validation.Valid;
 
 import java.util.List;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 public class UsersController {
@@ -34,5 +33,17 @@ public class UsersController {
     @RequestMapping(method = GET, path = "/users", produces = "application/json")
     public ResponseEntity<List<UsersEntity>> getList(@RequestParam(value = "name", required = false) String name) {
         return service.getList(name);
+    }
+
+    @RequestMapping(method = DELETE, path = "/users/{id}", produces = "application/json")
+    public ResponseEntity delete(@PathVariable(value = "id") long id) throws NotFoundException {
+        return service.delete(id);
+    }
+
+    @RequestMapping(method = PATCH, path = "/users/{id}", produces = "application/json")
+    public ResponseEntity update(
+            @PathVariable(value = "id") long id,
+            @Valid @RequestBody UsersDto usersDto) throws NotFoundException {
+        return service.updateUser(id, usersDto);
     }
 }

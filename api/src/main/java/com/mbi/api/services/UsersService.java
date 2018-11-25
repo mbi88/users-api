@@ -39,4 +39,24 @@ public class UsersService {
 
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
+
+    public ResponseEntity delete(long id) throws NotFoundException {
+        if (!usersRepository.findById(id).isPresent()) {
+            throw new NotFoundException(UsersEntity.class);
+        }
+        usersRepository.deleteById(id);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
+
+    public ResponseEntity updateUser(long id, UsersDto usersDto) throws NotFoundException {
+        if (!usersRepository.findById(id).isPresent()) {
+            throw new NotFoundException(UsersEntity.class);
+        }
+        UsersEntity usersEntity = new ModelMapper().map(usersDto, UsersEntity.class);
+        usersEntity.setId(id);
+        usersRepository.save(usersEntity);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
 }
