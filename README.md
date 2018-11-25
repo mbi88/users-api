@@ -6,6 +6,8 @@ Install `docker`
 
 ### Run
 
+`cd api`
+
 `docker-compose up --build`
 
 ### API docs
