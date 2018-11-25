@@ -2,7 +2,7 @@
 
 ### Preconditions
 
-Install `docker`
+Install [docker](https://docs.docker.com/install/)
 
 ### Run
 
@@ -18,4 +18,4 @@ $ docker-compose up --build
 
 ### API docs
 
-`http://127.0.0.1:8080/api/swagger`
+[http://127.0.0.1:8080/api/swagger](http://127.0.0.1:8080/api/swagger)
