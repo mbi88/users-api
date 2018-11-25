@@ -13,7 +13,7 @@ class AppConfig {
     AppConfig() {
         this.user = System.getenv("POSTGRES_USER");
         this.password = System.getenv("POSTGRES_PASSWORD");
-        this.dbHost = "db";
+        this.dbHost = System.getenv("POSTGRES_HOST");
         this.database = System.getenv("POSTGRES_DB");
         this.url = String.format("jdbc:postgresql://%s:5432/%s?createDatabaseIfNotExist=true", dbHost, database);
     }
