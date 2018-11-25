@@ -8,4 +8,4 @@ build/
 out/
 
 # Env vars
-# .env
+.env
