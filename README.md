@@ -10,13 +10,13 @@ Install `docker`
 
 `touch .env`
 
-`echo POSTGRES_DB=postgres > .env`
+`echo POSTGRES_DB=postgres >> .env`
 
-`echo POSTGRES_USER=postgres > .env`
+`echo POSTGRES_USER=postgres >> .env`
 
-`echo POSTGRES_PASSWORD=password > .env`
+`echo POSTGRES_PASSWORD=password >> .env`
 
-`echo POSTGRES_HOST=db > .env`
+`echo POSTGRES_HOST=db >> .env`
 
 `docker-compose up --build`
 
