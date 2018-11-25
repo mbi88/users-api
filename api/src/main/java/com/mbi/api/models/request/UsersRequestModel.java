@@ -1,10 +1,10 @@
-package com.mbi.api.dtos.users;
+package com.mbi.api.models.request;
 
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotNull;
 
-public class UsersDto {
+public class UsersRequestModel {
 
     @NotNull
     @Length(min = 2, max = 30)

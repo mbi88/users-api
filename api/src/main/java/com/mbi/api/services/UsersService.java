@@ -1,8 +1,10 @@
 package com.mbi.api.services;
 
-import com.mbi.api.dtos.users.UsersDto;
 import com.mbi.api.entities.users.UsersEntity;
 import com.mbi.api.exceptions.NotFoundException;
+import com.mbi.api.models.request.UsersRequestModel;
+import com.mbi.api.models.response.UserCreatedModel;
+import com.mbi.api.models.response.UserResponseModel;
 import com.mbi.api.repositories.UsersRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsersService {
@@ -18,26 +21,34 @@ public class UsersService {
     @Autowired
     private UsersRepository usersRepository;
 
-    public ResponseEntity<UsersEntity> createUser(UsersDto usersDto) {
-        UsersEntity usersEntity = new ModelMapper().map(usersDto, UsersEntity.class);
+    public ResponseEntity<UserCreatedModel> createUser(UsersRequestModel usersRequestModel) {
+        UsersEntity usersEntity = new ModelMapper().map(usersRequestModel, UsersEntity.class);
+        usersRepository.save(usersEntity);
+        UserCreatedModel userCreatedModel = new ModelMapper().map(usersEntity, UserCreatedModel.class);
 
-        return new ResponseEntity<>(usersRepository.save(usersEntity), HttpStatus.CREATED);
+        return new ResponseEntity<>(userCreatedModel, HttpStatus.CREATED);
     }
 
-    public ResponseEntity<UsersEntity> getById(Long id) throws NotFoundException {
+    public ResponseEntity<UserResponseModel> getById(Long id) throws NotFoundException {
         if (!usersRepository.findById(id).isPresent()) {
             throw new NotFoundException(UsersEntity.class);
         }
+        UsersEntity usersEntity = usersRepository.findById(id).get();
+        UserResponseModel userResponseModel = new ModelMapper().map(usersEntity, UserResponseModel.class);
 
-        return new ResponseEntity<>(usersRepository.findById(id).get(), HttpStatus.OK);
+        return new ResponseEntity<>(userResponseModel, HttpStatus.OK);
     }
 
-    public ResponseEntity<List<UsersEntity>> getList(String name) {
+    public ResponseEntity<List<UserResponseModel>> getList(String name) {
         List<UsersEntity> users = (name == null || name.isEmpty())
                 ? (List<UsersEntity>) usersRepository.findAll()
                 : usersRepository.findByName(name);
+        List<UserResponseModel> responseModels = users
+                .stream()
+                .map(u -> new ModelMapper().map(u, UserResponseModel.class))
+                .collect(Collectors.toList());
 
-        return new ResponseEntity<>(users, HttpStatus.OK);
+        return new ResponseEntity<>(responseModels, HttpStatus.OK);
     }
 
     public ResponseEntity delete(long id) throws NotFoundException {
@@ -49,11 +60,11 @@ public class UsersService {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    public ResponseEntity updateUser(long id, UsersDto usersDto) throws NotFoundException {
+    public ResponseEntity updateUser(long id, UsersRequestModel usersRequestModel) throws NotFoundException {
         if (!usersRepository.findById(id).isPresent()) {
             throw new NotFoundException(UsersEntity.class);
         }
-        UsersEntity usersEntity = new ModelMapper().map(usersDto, UsersEntity.class);
+        UsersEntity usersEntity = new ModelMapper().map(usersRequestModel, UsersEntity.class);
         usersEntity.setId(id);
         usersRepository.save(usersEntity);
 
