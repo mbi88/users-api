@@ -29,7 +29,7 @@ public class UsersService {
         return new ResponseEntity<>(userCreatedModel, HttpStatus.CREATED);
     }
 
-    public ResponseEntity<UserResponseModel> getById(Long id) throws NotFoundException {
+    public ResponseEntity<UserResponseModel> getUserById(Long id) throws NotFoundException {
         if (!usersRepository.findById(id).isPresent()) {
             throw new NotFoundException(UsersEntity.class);
         }
@@ -39,7 +39,7 @@ public class UsersService {
         return new ResponseEntity<>(userResponseModel, HttpStatus.OK);
     }
 
-    public ResponseEntity<List<UserResponseModel>> getList(String name) {
+    public ResponseEntity<List<UserResponseModel>> getUsersList(String name) {
         List<UsersEntity> users = (name == null || name.isEmpty())
                 ? (List<UsersEntity>) usersRepository.findAll()
                 : usersRepository.findByName(name);
@@ -51,7 +51,7 @@ public class UsersService {
         return new ResponseEntity<>(responseModels, HttpStatus.OK);
     }
 
-    public ResponseEntity delete(long id) throws NotFoundException {
+    public ResponseEntity deleteUser(long id) throws NotFoundException {
         if (!usersRepository.findById(id).isPresent()) {
             throw new NotFoundException(UsersEntity.class);
         }

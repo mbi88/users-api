@@ -27,17 +27,17 @@ public class UsersController {
 
     @RequestMapping(method = GET, path = "/users/{id}", produces = "application/json")
     public ResponseEntity<UserResponseModel> getById(@PathVariable(value = "id") long id) throws NotFoundException {
-        return service.getById(id);
+        return service.getUserById(id);
     }
 
     @RequestMapping(method = GET, path = "/users", produces = "application/json")
     public ResponseEntity<List<UserResponseModel>> getList(@RequestParam(value = "name", required = false) String name) {
-        return service.getList(name);
+        return service.getUsersList(name);
     }
 
     @RequestMapping(method = DELETE, path = "/users/{id}", produces = "application/json")
     public ResponseEntity delete(@PathVariable(value = "id") long id) throws NotFoundException {
-        return service.delete(id);
+        return service.deleteUser(id);
     }
 
     @RequestMapping(method = PATCH, path = "/users/{id}", produces = "application/json")
