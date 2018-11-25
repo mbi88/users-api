@@ -4,13 +4,15 @@ services:
     build: .
     container_name: users-api
     ports:
-     - "8080:8080"
+    - "8080:8080"
   db:
     image: "postgres:alpine"
     container_name: postgres-db
+    volumes:
+    - ./postgres-data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: mbi
       POSTGRES_PASSWORD: password
       POSTGRES_DB: mbi
     ports:
-      - "5432:5432"
+    - "5432:5432"
