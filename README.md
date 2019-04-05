@@ -7,7 +7,6 @@ Install [docker](https://docs.docker.com/install/)
 ### Run
 
 ```sh
-$ cd api
 $ touch .env
 $ echo POSTGRES_DB=postgres >> .env
 $ echo POSTGRES_USER=postgres >> .env

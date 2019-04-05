@@ -9,3 +9,6 @@ out/
 
 # Env vars
 .env
+
+# DB
+postgres-data/
