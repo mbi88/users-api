@@ -29,7 +29,7 @@ dependencies {
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
     testCompile group: 'com.jayway.jsonpath', name: 'json-path'
     compile group: 'org.postgresql', name: 'postgresql'
-    compile group: 'org.json', name: 'json', version: '20211205'
+    compile group: 'org.json', name: 'json', version: '20220320'
     compile group: 'org.modelmapper', name: 'modelmapper', version: '3.1.0'
     compile group: 'com.vladmihalcea', name: 'hibernate-types-52', version: '2.14.1'
 }
