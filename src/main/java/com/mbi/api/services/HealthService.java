@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class HealthService {
 
     public ResponseEntity<HealthEntity> checkHealth() {
-        HealthEntity healthEntity = new HealthEntity();
+        var healthEntity = new HealthEntity();
         healthEntity.setStatus("ok");
         healthEntity.setVersion(System.getenv("APP__VERSION"));
 

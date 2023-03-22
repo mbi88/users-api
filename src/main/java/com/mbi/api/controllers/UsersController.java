@@ -36,12 +36,12 @@ public class UsersController {
     }
 
     @RequestMapping(method = DELETE, path = "/users/{id}", produces = "application/json")
-    public ResponseEntity delete(@PathVariable(value = "id") long id) throws NotFoundException {
+    public ResponseEntity<Object> delete(@PathVariable(value = "id") long id) throws NotFoundException {
         return service.deleteUser(id);
     }
 
     @RequestMapping(method = PATCH, path = "/users/{id}", produces = "application/json")
-    public ResponseEntity update(
+    public ResponseEntity<Object> update(
             @PathVariable(value = "id") long id,
             @Valid @RequestBody UsersRequestModel usersRequestModel) throws NotFoundException {
         return service.updateUser(id, usersRequestModel);
