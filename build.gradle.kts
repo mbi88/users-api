@@ -21,5 +21,5 @@ dependencies {
     implementation("org.postgresql:postgresql")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
     implementation("org.modelmapper:modelmapper:3.2.2")
-    implementation("io.hypersistence:hypersistence-utils-hibernate-60:3.9.1")
+    implementation("io.hypersistence:hypersistence-utils-hibernate-60:3.9.2")
 }
